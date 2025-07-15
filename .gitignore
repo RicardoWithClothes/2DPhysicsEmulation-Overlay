@@ -7,6 +7,10 @@
 # BlueJ files
 *.ctxt
 
+#node_modules file
+node_modules/
+.vs/
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 

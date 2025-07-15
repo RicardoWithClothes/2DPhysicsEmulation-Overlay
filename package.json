@@ -1,0 +1,25 @@
+{
+  "name": "2dphysicsemulation-extention",
+  "version": "1.0.0",
+  "description": "Making an google extention in an attempt to \"hack\" kindahardgolf.com, a new golf web game. This is a project, for myself, and the resume",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RicardoWithClothes/2DPhysicsEmulation-Overlay.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RicardoWithClothes/2DPhysicsEmulation-Overlay/issues"
+  },
+  "homepage": "https://github.com/RicardoWithClothes/2DPhysicsEmulation-Overlay#readme",
+  "devDependencies": {
+    "electron": "^37.2.1",
+    "eslint": "^9.31.0"
+  }
+}
