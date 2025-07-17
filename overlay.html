@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        html, body {
+            margin: 0;
+            overflow: hidden;
+            background: transparent;
+        }
+
+        canvas {
+            display: block;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="overlay"></canvas>
+    <script>
+        const canvas = document.getElementById("overlay");
+        const ctx = canvas.getContext("2d");
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener("resize", resize);
+        resize();
+
+        let dotX = window.innerWidth / 2;
+        let dotY = window.innerHeight / 2;
+
+        // Optional: receive updates from the control window
+        window.electronAPI?.onUpdateDot?.((event, pos) => {
+            dotX = pos.x;
+            dotY = pos.y;
+        });
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.beginPath();
+            ctx.arc(dotX, dotY, 5, 0, Math.PI * 2);
+            ctx.fillStyle = "white";
+            ctx.fill();
+            requestAnimationFrame(draw);
+        }
+        draw();
+    </script>
+</body>
+</html>

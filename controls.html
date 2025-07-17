@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 10px;
+        }
+
+        label {
+            display: block;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h3>Dot Position</h3>
+    <label>
+        X:
+        <input type="range" id="posX" min="0" max="1920" value="960" />
+    </label>
+    <label>
+        Y:
+        <input type="range" id="posY" min="0" max="1080" value="540" />
+    </label>
+
+    <script>
+        const { ipcRenderer } = require("electron");
+
+        const posX = document.getElementById("posX");
+        const posY = document.getElementById("posY");
+
+        function sendUpdate() {
+            ipcRenderer.send("update-dot", {
+                x: parseInt(posX.value),
+                y: parseInt(posY.value)
+            });
+        }
+
+        posX.addEventListener("input", sendUpdate);
+        posY.addEventListener("input", sendUpdate);
+    </script>
+</body>
+</html>
+</html>

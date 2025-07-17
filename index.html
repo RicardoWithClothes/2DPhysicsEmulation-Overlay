@@ -14,33 +14,75 @@
         canvas {
             display: block;
         }
+
+        #controls {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            color: white;
+            font-family: sans-serif;
+            font-size: 14px;
+            border-radius: 8px;
+        }
+
+        label {
+            display: block;
+            margin-top: 6px;
+        }
+
+        input[type="range"] {
+            width: 200px;
+        }
     </style>
 </head>
 <body>
     <canvas id="overlay"></canvas>
+
+    <!-- ✅ Control Panel -->
+    <div id="controls">
+        <label>
+            X:
+            <input type="range" id="posX" min="0" max="1920" value="960">
+        </label>
+        <label>
+            Y:
+            <input type="range" id="posY" min="0" max="1080" value="540">
+        </label>
+    </div>
+
     <script>
         const canvas = document.getElementById("overlay");
         const ctx = canvas.getContext("2d");
 
+        const posXSlider = document.getElementById("posX");
+        const posYSlider = document.getElementById("posY");
+
         function resize() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
+            posXSlider.max = canvas.width;
+            posYSlider.max = canvas.height;
         }
-        resize();
+
         window.addEventListener("resize", resize);
+        resize();
 
         function draw() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            const cx = canvas.width / 2;
-            const cy = canvas.height / 2;
+
+            const x = parseInt(posXSlider.value);
+            const y = parseInt(posYSlider.value);
 
             ctx.beginPath();
-            ctx.arc(cx, cy, 5, 0, Math.PI * 2);
+            ctx.arc(x, y, 5, 0, Math.PI * 2);
             ctx.fillStyle = "white";
             ctx.fill();
 
             requestAnimationFrame(draw);
         }
+
         draw();
     </script>
 </body>
